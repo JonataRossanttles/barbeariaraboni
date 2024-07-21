@@ -8,7 +8,7 @@ function Header() {
  <header>
     <img src='imagens/logo.png' alt='logo' className='logo'></img>
     <ul className='menu-desktop'>
-      <li className='option-menu'>Sobre</li>
+      <li className='option-menu'>Curso</li>
       <li className='option-menu' >Serviços</li>
       <li className='option-menu'>Localização</li>
     </ul>
