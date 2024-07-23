@@ -4,6 +4,7 @@ import Header from './components/header';
 import Intro from './components/intro';
 import Cortes from './components/cortes';
 import Precos from './components/precos';
+import Location from './components/location';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
 <Curso/>
 <Cortes/>
 <Precos/>
-
+<Location/>
 
     </>
 

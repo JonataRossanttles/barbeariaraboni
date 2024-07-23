@@ -1,22 +1,29 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useEffect,useContext } from "react";
+import { MyContext } from "../datacontext";
+import ScrollReveal from "scrollreveal";
 
 function Precos() {
+  const {servicos} = useContext(MyContext)
 
-  const [lista_img_cortes,SetLista_img_cortes] = useState([])
-const lista_path = ['/imagens/corte1.png','/imagens/corte2.png','/imagens/corte4.png',
-  '/imagens/corte5.png','/imagens/corte6.png','/imagens/corte7.png','/imagens/corte8.png',
-  '/imagens/corte9.png','/imagens/corte10.png']
-useEffect(()=>{
-   const list = lista_path.map((element,index)=> <div key={index} className="corte"> <img src={element} alt="corte" className="img-corte"></img>   </div>  )
-  SetLista_img_cortes(list)
-},[])
+  useEffect(() => {
+    // Inicializar o ScrollReveal após a lista de imagens ser definida
+    const sr = ScrollReveal();
+    
+    sr.reveal('.text', {
+      duration: 1000,
+      opacity: 0,  // Ajustado para 360 graus
+      reset: false,
+    });
 
-
-
+    sr.reveal('.preco', {
+      duration: 1000,
+      opacity: 0,  // Ajustado para 360 graus
+      reset: false,
+    });
+  }, []);
   return (
     <>
-    <section className="container-geral-precos" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/imagens/logo1.png)` }}>
+    <section className="container-geral-precos" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/imagens/logo1.png)` }} ref={servicos}>
 
 <div className="container-precos">
 
