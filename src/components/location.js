@@ -35,7 +35,7 @@ return (
      </ul>
      </div>
      <div>
-      <img src="/imagens/icon-localizacao.png" alt="" className="img-location"/>
+      <img src="/imagens/localização.png" alt="" className="img-location"/>
      </div>
 
      </div>
