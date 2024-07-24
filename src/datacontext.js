@@ -6,15 +6,15 @@ import React, { createContext , useRef} from 'react';
 
 function MyProvider({ children }) {
 
-
+const inicio = useRef();
 const curso = useRef();
 const cortes = useRef();
 const servicos = useRef();
 const localizacao = useRef();
-console.log(curso)
+
 
     return (
-        <MyContext.Provider value={{curso,cortes,servicos,localizacao }}>
+        <MyContext.Provider value={{inicio,curso,cortes,servicos,localizacao }}>
             {children}
         </MyContext.Provider>
     );

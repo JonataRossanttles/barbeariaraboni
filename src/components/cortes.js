@@ -14,7 +14,7 @@ const lista_path = ['/imagens/corte1.png','/imagens/corte2.png','/imagens/corte4
   '/imagens/corte9.png','/imagens/corte10.png']
 
 useEffect(()=>{
-   const list = lista_path.map((element,index)=> <div key={index} className="corte"> <img src={element} alt="corte" className="img-corte"></img></div>)
+   const list = lista_path.map((element,index)=> <div key={index} className="corte" id={`corte${index}`}> <img src={element} alt="corte" className="img-corte"></img></div>)
   SetLista_img_cortes(list)
 
 },[])

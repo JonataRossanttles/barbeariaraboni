@@ -1,7 +1,58 @@
-import React,{useEffect} from "react";
+import React,{useEffect, useState,useContext} from "react";
 import ScrollReveal from 'scrollreveal';
+import { MyContext } from "../datacontext";
 
 function Intro() {
+const {inicio} = useContext(MyContext)
+
+const nameibarberaria = 'BARBEARIA RABONI'
+const nameisubtitulo = 'SUA MELHOR ESCOLHA'
+const nameibarberariasplit = nameibarberaria.split("")
+const nameisubtitulosplit = nameisubtitulo.split("")
+const [namefinal,setNamefinal] = useState("")
+const [namefinal2,setNamefinal2] = useState("")
+
+
+useEffect(() => {
+  const sr = ScrollReveal() 
+  
+  const addLetters = () => {
+    let newString = '';
+    let newletra = '';
+    nameibarberariasplit.forEach((element, index) => {
+      setTimeout(() => {
+        newString += element;
+        setNamefinal(newString);
+      }, 100 * index);
+    });
+
+    nameisubtitulosplit.forEach((element, index) => {
+      setTimeout(() => {
+        newletra += element;
+        setNamefinal2(newletra);
+      }, 120 * index);
+    });
+
+  };
+
+  addLetters();
+  
+const rotate = ()=>{
+  setTimeout(() => {
+    sr.reveal(".titulo",{
+      duration: 2000 ,
+     rotate:{x:180},
+      reset:false
+    })
+  }, 2000);
+ 
+}
+  rotate()
+  // Limpeza para garantir que o timer seja limpo se o componente desmontar
+ // return () => clearTimeout(timer);
+ console.log('b')
+}, []);
+
 
   useEffect(()=>{
     const sr = ScrollReveal() 
@@ -12,19 +63,18 @@ function Intro() {
       reset:true
     })
     
-    
     },[])
 
 
   return (
     <>
-<div className='back-header' style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/imagens/background-header.jpg)` }} > 
+<div className='back-header' style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/imagens/background-header.jpg)` }} ref={inicio} > 
 
-  <div className='container-geral-header'>
+  <div className='container-geral-header' >
 
   <div className='container-text-header'>
-  <h1 className='titulo'>BARBEARIA RABONI</h1>
-  <h2 className='subtitulo'>SUA MELHOR ESCOLHA</h2>
+  <h1 className='titulo' > {namefinal}</h1>
+  <h2 className='subtitulo'>{namefinal2}</h2>
   <p className='paragrafo-header'>Conheça a melhor barbearia da região, venha conferir e ainda divirta-se enquanto espera.</p>
     </div> 
   <div className='container-img-header'>
