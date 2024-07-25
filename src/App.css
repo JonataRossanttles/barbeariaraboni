@@ -71,7 +71,7 @@ header{
 .back-header{
   position: relative;
  width: 100%;
- height: 700px;
+ height: 800px;
  background-position: center;
  background-repeat: no-repeat;
  background-size: cover;
@@ -444,7 +444,7 @@ footer{
   width: 350px;
 }
 .subtitulo, .titulo{
-  font-size: 25px;
+  font-size: 28px;
 }
 .paragrafo-header{
   font-size: 13px;
