@@ -40,6 +40,7 @@ function inicioscrool(){
 // Funções onclick de scroll para as opções do menu mobile
 function inicioscroolmob(){
   inicio.current.scrollIntoView({ behavior: 'smooth' })
+  setMenumobile(!menumobile)
 }
 function cursoscroolmob(){
   curso.current.scrollIntoView({ behavior: 'smooth' })
