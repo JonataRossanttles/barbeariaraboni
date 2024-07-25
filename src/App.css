@@ -189,9 +189,7 @@ header{
   transition: 0.5s;
 }
 .link{
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+ 
   text-decoration: none;
   color: black;
   width: 260px ;
@@ -201,6 +199,13 @@ header{
   text-decoration: none;
   color: white;
 }
+.link-footer{
+  font-family: "Montserrat", sans-serif;
+  text-decoration: none;
+  color: black;
+  font-weight: 400;
+}
+
 .button-curso:hover{
   
   transform: scale(1.05);
@@ -326,7 +331,27 @@ width: 900px;
   font-family: "Montserrat";
   font-weight: 500;
 }
-
+footer{
+  position: relative;
+  text-align: center;
+  padding-bottom: 10px;
+}
+.text-footer{
+  font-size: 14px;
+}
+.whats-footer{
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  right: 26px;
+  bottom: 25px;
+  z-index: 999;
+  transition: 0.5s;
+}
+.whats-footer:hover{
+  transform:  scale(1.1);
+  
+}
 @media screen and (max-width:1200px){
   
   .img-location{
@@ -337,7 +362,7 @@ width: 900px;
     max-width: 1000px;
     flex-direction: column;
     align-items: center;
-    height: 900px;
+    height: 700px;
   }
   .img-location{
     margin-top: 40px;
@@ -380,6 +405,9 @@ width: 900px;
     font-size: 45px;
   }
   .link{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     justify-content: center;
   }
@@ -402,6 +430,9 @@ width: 900px;
 .icon-menu{
  
   display: block;
+}
+.text-footer{
+  font-size: 12px;
 }
 }
 @media screen and (max-width:480px){
@@ -453,5 +484,8 @@ width: 900px;
   width: 65px;
   height: 55px;
   margin-left: 0;
+}
+.text-footer{
+  font-size: 9px;
 }
   }

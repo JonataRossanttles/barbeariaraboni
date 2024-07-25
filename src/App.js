@@ -5,6 +5,7 @@ import Intro from './components/intro';
 import Cortes from './components/cortes';
 import Precos from './components/precos';
 import Location from './components/location';
+import Footer from './components/footer';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
 <Cortes/>
 <Precos/>
 <Location/>
+<Footer/>
 
     </>
 
