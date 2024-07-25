@@ -21,7 +21,7 @@ return (
      <ul className="lista-location">
       <li className="option-location">
         <img src="/imagens/whatsapp.png" alt="" className="icon-location"></img>
-        <span className="text-location">Whatsapp : 81 9543-1412 </span>
+        <span className="text-location">Whatsapp : 81 99543-1412 </span>
       </li>
       <li className="option-location">
         <img src="/imagens/icon-relogio.png" alt="" className="icon-location"></img>

@@ -12,7 +12,7 @@ const sr = ScrollReveal()
 
 sr.reveal(".container-central-curso",{
   duration: 500 ,
-  scale:1.3,
+  scale:0.5,
   reset:true
 })
 

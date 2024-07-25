@@ -136,10 +136,10 @@ function Precos() {
 <h1 className="titulo-precos"> Combo</h1>
 
 <div className="container-text-preco" style={{ marginTop:'25px'}}>
-  <span className="text" style={{fontSize : '24px'}}>
+  <span className="text" style={{fontSize : '24px'}} id="text-preco">
       Degradê, Barba, Sobrancelha, Lavagem, Escova de finalização
   </span>
-  <span className="preco">
+  <span className="preco" id="preco">
     R$  30,00
   </span>
 </div>

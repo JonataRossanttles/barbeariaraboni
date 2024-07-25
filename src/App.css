@@ -5,6 +5,7 @@
 
 body{
   font-family: "Montserrat", sans-serif;
+  box-sizing: border-box ;
 }
 
 header{
@@ -17,9 +18,10 @@ header{
  width: 100%;
  height: 60px;
  z-index: 1;
- transition: 0.5s;
+ transition: 0.2s;
  backdrop-filter: blur(2px);
  z-index: 999;
+ padding: 0px 10px 0px 10px;
 
 }
 .menu-desktop{
@@ -28,11 +30,36 @@ header{
   margin-right: 20px;
   padding: 0;
 }
+.menu-mobile{
+  position: absolute;
+  top: 59px;
+  left: -10px;
+  list-style: none;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.575);
+  
+}
 .option-menu{
   color: white;
   margin-left: 20px;
   font-size: 18px;
   cursor: pointer;
+  
+}
+.option-menu-mobile{
+  color: white;
+}
+.option-menu-mobile:not(:last-child){
+  margin-bottom: 10px;
+}
+.icon-menu{
+  margin-right: 20px;
+  display: none;
   
 }
 .logo{
@@ -161,8 +188,13 @@ header{
   transition: 0.5s;
 }
 .link{
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
   text-decoration: none;
   color: black;
+  width: 260px ;
+  display: block;
 }
 .link-header{
   text-decoration: none;
@@ -185,11 +217,11 @@ header{
 }
 .container-cortes{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px,1fr) );
-  padding: 40px 0px 20px 0px;
+  grid-template-columns: repeat(auto-fit, minmax(300px,1fr) );
+  padding: 25px 0px 20px 0px;
   justify-items: center;
   gap: 20px;
-  max-width: 1100px;
+  width: 950px;
 }
 .img-corte{
   width: 100%;
@@ -197,8 +229,8 @@ header{
   border-radius: 5px;
 }
 .corte{
-  width: 350px;
-  height: 380px;
+  width: 300px;
+  height: 320px;
 }
 .container-geral-precos{
   background-attachment: fixed;
@@ -226,6 +258,7 @@ width: 900px;
   font-weight: 500;
   font-size: 1.5rem;
 }
+
 .titulo-precos{
   font-family: "Aclonica";
   color: white;
@@ -293,3 +326,122 @@ width: 900px;
   font-weight: 500;
 }
 
+@media screen and (max-width:1200px){
+  
+  .img-location{
+    width: 300px;
+    height: 300px;
+  }
+  .container-central-location{
+    max-width: 1000px;
+    flex-direction: column;
+    align-items: center;
+    height: 900px;
+  }
+  .img-location{
+    margin-top: 40px;
+  }
+}
+@media screen and (max-width:1000px){
+  .container-cortes{
+    width: 100%;
+  }
+  .container-central-location{
+    max-width: 600px;
+    
+    
+  }
+}
+@media screen and (max-width:950px){
+  .container-central-precos{
+    width: 100%;
+    padding: 20px;
+  }
+  .container-precos{
+    height: 700px;
+  }
+  .container-geral-header{
+    flex-direction: column;
+    align-items: center;
+  }
+  .subtitulo,.paragrafo-header,.titulo{
+    text-align: center;
+    margin-left: 0;
+  }
+  .text-curso{
+    width: 400px;
+    text-align: justify;
+  }
+  .text,.preco,.apartir{
+    font-size: 12px !important;
+  }
+  .titulo-precos,.subtitulo-precos{
+    font-size: 45px;
+  }
+  .link{
+    display: flex;
+    justify-content: center;
+  }
+  .container-geral-curso{
+    height: 800px;
+  }
+  .poster-curso{
+    margin-right: 0;
+  }
+  .container-central-curso{
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+  }
+}
+@media screen and (max-width:580px){
+.menu-desktop{
+  display: none;
+}
+.icon-menu{
+ 
+  display: block;
+}
+}
+@media screen and (max-width:480px){
+#text-preco{
+  font-size: 11px !important;
+  width:  250px;
+}
+.container-geral-header, .container-text-header{
+  width: 350px;
+}
+.subtitulo, .titulo{
+  font-size: 25px;
+}
+.paragrafo-header{
+  font-size: 13px;
+}
+.container-geral-header{
+  padding: 10px;
+}
+.poster-curso{
+  width: 350px;
+  height: 400px;
+  
+}
+.text-curso{
+  width: 350px;
+}
+.container-geral-curso{
+  height: 700px;
+}
+#preco{
+  font-size: 11px !important;
+}
+.titulo-precos,.subtitulo-precos,.titulo-location{
+  font-size: 40px;
+}
+.corte{
+  width: 250px;
+  height: 280px;
+}
+.container-cortes{
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))
+}
+  }
