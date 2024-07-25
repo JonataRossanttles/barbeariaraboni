@@ -62,7 +62,7 @@ function localizacaoscroolmob(){
     <>
      
  <header style={{backgroundColor: alturaview > 100 || menumobile == true ? 'rgba(0, 0, 0, 0.575)' :  'transparent' , fontWeight: alturaview > 100 ? '600' :  '400'}} >
-    <img src='imagens/logo-sem-fundo.png' alt='logo' className='logo'></img>
+    <img src='imagens/logo-sem-fundo.png' alt='logo' className='logo' onClick={inicioscrool} ></img>
     <ul className='menu-desktop'>
     <li className='option-menu'   onClick={inicioscrool}  >Início</li> 
       <li className='option-menu' onClick={cursoscrool} style={{color: alturaview > 630  && alturaview < 1240 ? '#e8c871' :  'white'}}>Curso</li> 
