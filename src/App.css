@@ -216,6 +216,10 @@ header{
   height: 20px;
   margin-right: 7px;
 }
+.img-whats-footer{
+  width: 50px;
+  height: 50px;
+}
 .container-geral-cortes{
   width: 100%;
   display: flex;
@@ -342,8 +346,7 @@ footer{
   font-size: 14px;
 }
 .whats-footer{
-  width: 50px;
-  height: 50px;
+ 
   position: fixed;
   right: 26px;
   bottom: 25px;
