@@ -1,26 +1,25 @@
+import logo from './logo.svg';
 import './App.css';
-import Curso from './components/curso';
-import Header from './components/header';
-import Intro from './components/intro';
-import Cortes from './components/cortes';
-import Precos from './components/precos';
-import Location from './components/location';
-import Footer from './components/footer';
+import { useEffect } from 'react';
 
 function App() {
+
+//useEffect(()=>{
+  //fetch('https://barbeariaraboni-eb7b4-default-rtdb.firebaseio.com/Pedro.json',{method:'POST',
+   // headers:{'Content-Type':'Application/json'},
+ // body:JSON.stringify({nome:'Carlos',celular:'986919984',corte:'degradê'})}).then(response=>response.json()).
+  // then(data=>console.log(data))
+//},[])
+  
+useEffect(()=>{
+  fetch('https://barbeariaraboni-eb7b4-default-rtdb.firebaseio.com/Pedro.json'
+  ).then(response=>response.json()).
+   then(data=>console.log(data))
+},[])
+
+
   return (
-    <>
-     
-<Header/>
-<Intro/>
-<Curso/>
-<Cortes/>
-<Precos/>
-<Location/>
-<Footer/>
-
-    </>
-
+   <></>
   );
 }
 
