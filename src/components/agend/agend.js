@@ -6,11 +6,13 @@ import React, { useEffect, useState,useRef } from "react";
 
 function Agend() {
 
-
+useEffect(()=>{
   fetch('https://barbeariaraboni-eb7b4-default-rtdb.firebaseio.com/Augusto.json',{method:'POST',
     headers:{'Content-Type':'Application/json'},
    body:JSON.stringify({nome:'Carlos',celular:'986919984',corte:'degradê'})}).then(response=>response.json()).
    then(data=>console.log(data))
+},[])
+ 
 
 
 const [options,Useoptions] = useState([])
