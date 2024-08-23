@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Teko:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aclonica&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&display=swap');
+
+*{
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+.container-geral-agend{
+    width: 300px;
+    display: flex;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.forms-agend{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+
+}
+.label{
+    color: white;
+    margin-bottom: 5px;
+}
+.input-agend{
+    width: 100%;
+    height: 30px;
+    outline: none;
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+.logo-agend{
+    width: 200px;
+    height: 200px;
+}
+#button-agend-form{
+    width: 100%;
+    cursor: pointer;
+    height: 40px;
+    background-color: rgba(100, 99, 99, 0.137);
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    margin-top: 10px;
+    outline: none;
+    border-radius: 8px;
+    border: solid 1px white ;
+    transition: 0.5s;
+}
+#button-agend-form:hover{
+
+background-color: rgba(100, 99, 99, 0.425);
+}
+.container-valor{
+    display: flex;
+    position: absolute;
+    top: 448px;
+    right: 0;
+    justify-content: end;
+    width: 100%;
+}
+.text-valor,.valor{
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+}
+option{
+    padding: 10px;
+}
+.link{
+    width: 100%;
+}

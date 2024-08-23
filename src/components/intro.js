@@ -1,6 +1,7 @@
 import React,{useEffect, useState,useContext} from "react";
 import ScrollReveal from 'scrollreveal';
 import { MyContext } from "../datacontext";
+import { Link } from "react-router-dom";
 
 function Intro() {
 const {inicio} = useContext(MyContext)
@@ -76,7 +77,13 @@ const rotate = ()=>{
   <h1 className='titulo' > {namefinal}</h1>
   <h2 className='subtitulo'>{namefinal2}</h2>
   <p className='paragrafo-header'>Conheça a melhor barbearia da região, venha conferir e ainda divirta-se enquanto espera.</p>
+  <Link to={'/agendamento'} className="link"> 
+  <div className='button-agend'>
+      <img src='/imagens/calendario.png' alt='' className='img-whats'></img>
+      <span className='text-whats'>Agende seu corte</span> 
+    </div></Link>
     </div> 
+    
   <div className='container-img-header'>
     
   <img src='/imagens/corte3.png' alt='' className='img-header' ></img>

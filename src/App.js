@@ -1,25 +1,41 @@
-import logo from './logo.svg';
 import './App.css';
-import { useEffect } from 'react';
+import Curso from './components/curso';
+import Header from './components/header';
+import Intro from './components/intro';
+import Cortes from './components/cortes';
+import Precos from './components/precos';
+import Location from './components/location';
+import Footer from './components/footer';
+import Agend from './components/agend/agend';
+import Confirm from './components/results_agend/confirm';
+import { BrowserRouter as Router, Routes,Route } from 'react-router-dom';
 
 function App() {
-
-//useEffect(()=>{
-  //fetch('https://barbeariaraboni-eb7b4-default-rtdb.firebaseio.com/Pedro.json',{method:'POST',
-   // headers:{'Content-Type':'Application/json'},
- // body:JSON.stringify({nome:'Carlos',celular:'986919984',corte:'degradê'})}).then(response=>response.json()).
-  // then(data=>console.log(data))
-//},[])
-  
-useEffect(()=>{
-  fetch('https://barbeariaraboni-eb7b4-default-rtdb.firebaseio.com/Pedro.json'
-  ).then(response=>response.json()).
-   then(data=>console.log(data))
-},[])
-
-
   return (
-   <></>
+    <>
+<Router>
+
+  <Routes>
+  <Route path='/' element={
+      <>
+      <Header/>
+      <Intro/>
+      <Curso/>
+      <Cortes/>
+      <Precos/>
+      <Location/>
+      <Footer/>
+    </>
+
+    }/>
+    <Route path='/agendamento' element={<Agend/>}/>
+    <Route path='/agendamento/sucess' element={<Confirm/>}/>
+</Routes>
+
+
+</Router>
+    </>
+
   );
 }
 

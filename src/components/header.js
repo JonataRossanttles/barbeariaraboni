@@ -75,7 +75,6 @@ function localizacaoscroolmob(){
 <img src={`${menumobile ?"/imagens/icon-close.svg" :"/imagens/icon-hamburger.svg" }`}  alt="" className="icon-menu" onClick={openclose}></img>
 
 
-
 <ul className='menu-mobile' style={{display: menumobile ? 'flex' : 'none'}}>
     <li className='option-menu-mobile' onClick={inicioscroolmob}  >Início</li> 
       <li className='option-menu-mobile' onClick={cursoscroolmob} >Curso</li> 
