@@ -14,7 +14,7 @@ function Header() {
       })
 
     },[])
-    console.log(alturaview)
+   
 
 
     function openclose(){

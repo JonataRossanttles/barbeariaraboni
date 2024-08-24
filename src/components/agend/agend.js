@@ -1,25 +1,17 @@
 import { Link, useNavigate } from 'react-router-dom';
 import './agend.css'
 import React, { useEffect, useState,useRef } from "react";
+import Confirm from '../results_agend/confirm';
 
 
 
 function Agend() {
 
-useEffect(()=>{
-  fetch('https://barbeariaraboni-eb7b4-default-rtdb.firebaseio.com/Augusto.json',{method:'POST',
-    headers:{'Content-Type':'Application/json'},
-   body:JSON.stringify({nome:'Carlos',celular:'986919984',corte:'degradê'})}).then(response=>response.json()).
-   then(data=>console.log(data))
-},[])
- 
-
-
 const [options,Useoptions] = useState([])
 const [dataatual,Usedataatual] = useState([])
 const [statuserro,Usestatuserro] = useState()
 const navigate = useNavigate()
-const [statusenvio,Usestatusenvio] = useState([])
+const [statusenvio,Usestatusenvio] = useState(false)
 const [status,Usestatus] = useState(false)
 const [horarios,Usehorarios] = useState([])
 const [barbeiro,Usebarbeiro] = useState([])
@@ -31,6 +23,11 @@ const corteRef = useRef();
 const dataRef = useRef();
 const horaRef = useRef();
 const barbeiroRef = useRef();
+const [ticket,Useticket] = useState();
+const [nome,Usenome] = useState();
+const [data,Usedata] = useState();
+const [hora,Usehora] = useState();
+
 
 
 
@@ -86,17 +83,17 @@ Usestatus(true)
 const dataescolhida = new Date (dataRef.current.value)
 const dataformat = dataescolhida.toISOString().split('T')[0] 
 const namebarbeiro = barbeiroRef.current.value
-const date = {data: dataescolhida, barbeiro: namebarbeiro}
+const date = {data: dataformat, barbeiro: namebarbeiro}
 Usehorariosbd([]) // Limpa os horários que vieram do banco
 Usedataatual(dataformat);
 
-fetch('/agendamento/date', {
+fetch('https://backendbarbeariaraboni-1.onrender.com/agendamento/date', {
   method: 'POST', // Define o método HTTP
   headers: {
       'Content-Type': 'application/json' // Define o tipo de conteúdo como JSON
   }, body: JSON.stringify(date)  }) // Converte o corpo da requisição para uma string JSON
   .then(response => response.json())
-  .then(data => data.map((element)=>{ console.log(data)
+  .then(data => data.map((element)=>{ 
     Usehorariosbd((prev)=> [...prev, element.hora_formatada])})//Armazena os horários do banco em um array
 
   ).catch((error)=>{
@@ -135,7 +132,7 @@ function enviar(event) {
     
   };
 
-  fetch('/agendamento', {
+  fetch('https://backendbarbeariaraboni-1.onrender.com/agendamento', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
@@ -147,9 +144,13 @@ function enviar(event) {
     return response.json()
   })
     .then(data => {
+        Useticket(data.id)
+        Usenome(nomeRef.current.value)
+        Usedata(dataRef.current.value)
+        Usehora(horaRef.current.value)
         Usestatusenvio(true)
         adddata()
-        navigate('/agendamento/sucess')
+        
     })
     .catch(error => {
       window.alert('Preencha todos os campos!')
@@ -158,12 +159,21 @@ function enviar(event) {
     });
    
 }
-
-
+useEffect(() => {
+  if (statusenvio && ticket) {
+    
+  }
+}, [statusenvio, ticket]);
 
 return (
     <>
-    <div className='container-geral-agend'>
+    <Link to='/'>
+    <div className='container-voltar'> 
+    <img src='/imagens/seta-voltar.png' className='voltar'></img>
+    <span className='text-voltar'>VOLTAR</span>
+    </div>
+    </Link>
+    <div className='container-geral-agend' style={{display: statusenvio ?  'none' : 'flex'}}>
 
       <img src='/imagens/logo.png' alt='' className='logo-agend'></img>
       
@@ -196,7 +206,7 @@ return (
       
     </div>
    
-    
+    { statusenvio && <Confirm ticket={ticket} nome={nome} data={data} hora={hora} />}
     </>
 
   );

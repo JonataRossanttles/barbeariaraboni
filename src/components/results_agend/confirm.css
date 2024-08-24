@@ -20,7 +20,14 @@
 }
 .text-confirm{
     color: white;
-    font-size: 25px;
+    font-size: 18px;
     width: 340px;
     text-align: center;
 }
+
+.text-ticket{
+margin-top: 20px;
+font-size: 18px;
+color: white;
+}
+

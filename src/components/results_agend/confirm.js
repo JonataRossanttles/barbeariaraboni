@@ -1,18 +1,21 @@
 import './confirm.css'
-import React, { useEffect, useState,useRef } from "react";
 
-function Confirm() {
- // host:'http://sql110.infinityfree.com',
-//  user:'if0_37158059',
- // password:'aE4THicHPsN7Upg',
- // port:'3306',
- // database:'if0_37158059_barbeariaraboni'
+import React, { useEffect } from "react";
+import { Link } from 'react-router-dom';
+
+function Confirm({ticket, nome, data, hora}) {
+
 
 return (
     <>
+     
     <div className='container-confirm-geral'>
       <img src='/imagens/confirm.png' className='img-confirm'></img>
-      <span className='text-confirm'>Obrigado pela preferência. Seu agendamento foi realizado com sucesso. </span>
+      <span className='text-confirm'>{nome}, obrigado pela preferência, seu agendamento foi realizado com sucesso. 
+        Estaremos te esperando no dia {data} às {hora}. <br/> 
+         Guarde o seu ticket para consultar seu agendamento.  </span>
+         <span className='text-ticket'> 
+         Ticket: {ticket}  </span>
     </div>
     </>
 

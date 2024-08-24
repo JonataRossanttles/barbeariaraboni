@@ -3,7 +3,7 @@ import { MyContext } from "../datacontext";
 import ScrollReveal from 'scrollreveal';
 
 function Cortes() {
-
+document.body.style.backgroundColor = 'white'
 const {cortes} = useContext(MyContext)
 
 

@@ -5,7 +5,7 @@ import { MyContext } from "../datacontext";
 function Location() {
 
 const {localizacao} = useContext(MyContext)
-
+document.body.style.backgroundColor = 'white'
 
 
 return (
