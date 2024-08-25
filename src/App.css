@@ -108,6 +108,7 @@ align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding: 10px;
 }
 .titulo,.subtitulo{
@@ -203,8 +204,14 @@ align-items: center;
  
   text-decoration: none;
   color: black;
-  width: 260px ;
+  width: 260px !important;
   display: block;
+}
+.link-intro{
+  width: 230px;
+  margin-bottom: 20px;
+  text-decoration: none;
+  color: black;
 }
 .link-header{
   text-decoration: none;

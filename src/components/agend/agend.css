@@ -60,7 +60,7 @@ background-color: rgba(100, 99, 99, 0.425);
 .container-valor{
     display: flex;
     position: absolute;
-    top: 448px;
+    top: 470px;
     right: 0;
     justify-content: end;
     width: 100%;
