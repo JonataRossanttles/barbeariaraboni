@@ -9,6 +9,7 @@ import Footer from './components/footer';
 import Agend from './components/agend/agend';
 import Confirm from './components/results_agend/confirm';
 import { BrowserRouter as Router, Routes,Route } from 'react-router-dom';
+import Consulta from './components/consulta/consulta';
 
 function App() {
   
@@ -30,7 +31,8 @@ function App() {
 
     }/>
     <Route path='/agendamento' element={<Agend/>}/>
-    <Route path='/agendamento/sucess' element={<Confirm/>}/>
+    <Route path='/agendamento/consulta' element={<Consulta/>}/>
+   
 </Routes>
 
 
