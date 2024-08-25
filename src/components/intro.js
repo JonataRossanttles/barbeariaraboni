@@ -77,6 +77,7 @@ const rotate = ()=>{
   <h1 className='titulo' > {namefinal}</h1>
   <h2 className='subtitulo'>{namefinal2}</h2>
   <p className='paragrafo-header'>Conheça a melhor barbearia da região, venha conferir e ainda divirta-se enquanto espera.</p>
+  <div className="container-button-intro">
   <Link to={'/agendamento'} className="link-intro"> 
   <div className='button-agend'>
       <img src='/imagens/calendario.png' alt='' className='img-whats'></img>
@@ -85,10 +86,12 @@ const rotate = ()=>{
     </Link>
     <Link to={'/agendamento/consulta'} className="link-intro"> 
   <div className='button-agend'>
-      <img src='/imagens/calendario.png' alt='' className='img-whats'></img>
+      <img src='/imagens/lupa.png' alt='' className='img-whats'></img>
       <span className='text-whats'>Consultar agend.</span> 
     </div>
     </Link>
+  </div>
+  
     </div> 
     
   <div className='container-img-header'>
