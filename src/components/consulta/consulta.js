@@ -63,30 +63,31 @@ function Consulta() {
        
         
         </div>
+        <div className='linha'></div>
        
        <div className='container-dados'>
         <span className='label'>Nome:</span>
-        <span className='text'>{nome}</span>
+        <span className='text-consulta'>{nome}</span>
        </div>
        <div className='container-dados'>
         <span className='label'>Celular:</span>
-        <span className='text'>{celular}</span>
+        <span className='text-consulta'>{celular}</span>
        </div>
        <div className='container-dados'>
         <span className='label'>Barbeiro:</span>
-        <span className='text'>{barbeiro}</span>
+        <span className='text-consulta'>{barbeiro}</span>
        </div>
        <div className='container-dados'>
         <span className='label'>Corte:</span>
-        <span className='text'>{corte}</span>
+        <span className='text-consulta'>{corte}</span>
        </div>
        <div className='container-dados'>
         <span className='label'>Data:</span>
-        <span className='text'>{data}</span>
+        <span className='text-consulta'>{data}</span>
        </div>
        <div className='container-dados'>
         <span className='label'>Hora:</span>
-        <span className='text'>{hora}</span>
+        <span className='text-consulta'>{hora}</span>
        </div>
        <button className='button-consulta' onClick={consultar}>Consultar</button>
       </form>
