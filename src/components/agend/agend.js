@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './agend.css'
 import React, { useEffect, useState,useRef } from "react";
 import Confirm from '../results_agend/confirm';
+import Load from '../load/load';
 
 
 
@@ -27,6 +28,7 @@ const [ticket,Useticket] = useState();
 const [nome,Usenome] = useState();
 const [data,Usedata] = useState();
 const [hora,Usehora] = useState();
+const [statusloading,Usestatusloading] = useState(false);
 
 
 
@@ -45,7 +47,7 @@ const valor = {'Corte completo (Só um pente)': 'Valor fixo - R$ 20,00', 'Corte 
   'Combo: Degradê, Barba, Sobrancelha, Lavagem, Escova de finalização':' Valor fixo - R$ 30,00'
 }
 
-const barbeiros = ['Augusto','Pedro']
+const barbeiros = ['Augusto','Victor']
 
 document.body.style.backgroundColor = 'black'
 
@@ -54,8 +56,8 @@ useEffect(()=>{
 
   const today = new Date();
   const dataatual = today.toISOString().split('T')[0] 
-  const barbeironame =  barbeiros.map((element)=> <option>{element}</option>)
-  const name = cortes.map((element)=> <option>{element}</option>)
+  const barbeironame =  barbeiros.map((element)=> <option className='options'>{element}</option>)
+  const name = cortes.map((element)=> <option className='options'>{element}</option>)
   Usedataatual(dataatual);
   Useoptions(name)
    Usebarbeiro(barbeironame)
@@ -105,12 +107,12 @@ useEffect(()=>{
 
   if(dataescolhida.getDay() >= 0 && dataescolhida.getDay() <= 5 ) {
     const hr = horariosem.filter((element)=> !horariosbd.includes(element) )
-    const hours = hr.map((element)=><option>{element}</option>)
+    const hours = hr.map((element)=><option className='options'>{element}</option>)
     Usehorarios(hours)
     
   }else if(dataescolhida.getDay() >= 6){
     const hrs = horariodom.filter((element)=> !horariosbd.includes(element)) 
-    const hour = hrs.map((element)=><option>{element}</option>)
+    const hour = hrs.map((element)=><option className='options'>{element}</option>)
     Usehorarios(hour)
     
   }else{
@@ -121,6 +123,7 @@ useEffect(()=>{
 
 function enviar(event) {
   event.preventDefault(); // Impede o envio padrão do formulário
+  Usestatusloading(true)
   
   const data = {
     nome: nomeRef.current.value,
@@ -149,21 +152,20 @@ function enviar(event) {
         Usedata(dataRef.current.value)
         Usehora(horaRef.current.value)
         Usestatusenvio(true)
+        Usestatusloading(false)
         adddata()
         
     })
     .catch(error => {
       window.alert('Preencha todos os campos!')
       Usestatusenvio(false)
+      Usestatusloading(false)
       
     });
    
 }
-useEffect(() => {
-  if (statusenvio && ticket) {
-    
-  }
-}, [statusenvio, ticket]);
+
+
 
 return (
     <>
@@ -178,16 +180,16 @@ return (
       <img src='/imagens/logo.png' alt='' className='logo-agend'></img>
       
       <form className='forms-agend' >
-        <label className='label' for='nome' >Nome:</label>
-        <input name='nome' className='input-agend'  id='nome' ref={nomeRef} required></input>
-        <label className='label' for='celular' >Celular:</label>
-        <input name='celular' type="number" min="0"  className='input-agend' id='celular' ref={celularRef} required></input>
-        <label className='label' for='barbeiro'>Barbeiro:</label>
+        <label className='label-agend' for='nome' >Nome:</label>
+        <input name='nome' className='input-agend'  id='nome' ref={nomeRef} required placeholder='Informe seu nome'></input>
+        <label className='label-agend' for='celular' >Celular:</label>
+        <input name='celular' type="number" min="0"  className='input-agend' id='celular' ref={celularRef} required placeholder='Informe seu Whatsapp'></input>
+        <label className='label-agend' for='barbeiro'>Barbeiro:</label>
         <select className='input-agend' id='barbeiro' ref={barbeiroRef} onChange={adddata}   >
           <option disabled selected hidden>Selecione um barbeiro</option>
           {barbeiro}
         </select>
-        <label className='label' for='barbeiro'>Corte:</label>
+        <label className='label-agend' for='barbeiro'>Corte:</label>
         <select className='input-agend' id='corte' ref={corteRef} onChange={corteadd} required>
           {options}
         </select>
@@ -195,9 +197,9 @@ return (
         <span className='valor'>{valorfinal}</span>
 
       </div>
-        <label className='label' for='data'>Data:</label>
+        <label className='label-agend' for='data'>Data:</label>
         <input name='celular' type="date"  className='input-agend' id='data'  onChange={adddata}  ref={dataRef} disabled={status ? false : true}></input>
-        <label className='label' for='hora'>Horários disponíveis:</label>
+        <label className='label-agend' for='hora'>Horários disponíveis:</label>
         <select className='input-agend' id='hora' ref={horaRef} disabled={status ? false : true} >
           {horarios}
         </select>
@@ -205,7 +207,7 @@ return (
       </form>
       
     </div>
-   
+    { statusloading && <Load/>}
     { statusenvio && <Confirm ticket={ticket} nome={nome} data={data} hora={hora} />}
     </>
 

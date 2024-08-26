@@ -1,9 +1,7 @@
 import { Link } from 'react-router-dom';
 import './consulta.css'
 import React, {useState } from "react";
-
-
-
+import Load from '../load/load';
 
 function Consulta() {
     document.body.style.backgroundColor = 'black'
@@ -15,11 +13,16 @@ function Consulta() {
     const [data,Usedata] =  useState();
     const [hora,Usehora] =  useState();
     const [barbeiro,Usebarbeiro] = useState();
+    const [dadosforms,Usedadosforms] = useState(false);
+    const [statusloading,Usestatusloading] = useState(false);
+
   
     function consultar(event){
         event.preventDefault()
+        Usestatusloading(true)
+
         const ticket = ticketRef.current.value
-        fetch(`https://barbeariaraboni-eb7b4-default-rtdb.firebaseio.com/.json`)
+        fetch(`https://backendbarbeariaraboni-1.onrender.com/agendamento/consulta`)
     .then(response=>response.json())
     .then(dados=>{
         const chaves = Object.values(dados)
@@ -31,9 +34,12 @@ function Consulta() {
              Usebarbeiro(obj[ticket].barbeiro)
              Usedata(obj[ticket].data)
             Usehora(obj[ticket].hora)
-       
+            Usedadosforms(true)
+            Usestatusloading(false)
         }else{
+            Usestatusloading(false)
             window.alert('Digite um ticket válido!')
+            
         }
     
     }).catch((erro)=>{console.log(erro)})
@@ -58,12 +64,16 @@ function Consulta() {
         <div className='container-busca'>
             <div className='container-input'>
             <label className='label' id='text-ticket' for='ticket' >Ticket:</label>
-            <input name='nome' className='input-ticket'  id='ticket' ref={ticketRef}></input>
+            <input name='nome' className='input-ticket'  id='ticket' ref={ticketRef} placeholder='Digite seu ticket'></input>
             </div>
        
         
         </div>
-        <div className='linha'></div>
+        <div className='container-geral-dados-consulta' style={{display: dadosforms ? 'flex' : 'none' }}>
+
+        
+        <span className='titulo-consulta'> Dados do seu agendamento</span>
+        <div className='linha'> </div>
        
        <div className='container-dados'>
         <span className='label'>Nome:</span>
@@ -89,9 +99,10 @@ function Consulta() {
         <span className='label'>Hora:</span>
         <span className='text-consulta'>{hora}</span>
        </div>
+       </div> 
        <button className='button-consulta' onClick={consultar}>Consultar</button>
       </form>
-      
+      { statusloading && <Load/>}
     </div>
         </>
     

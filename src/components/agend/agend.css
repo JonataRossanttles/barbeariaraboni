@@ -24,9 +24,9 @@
     align-items: start;
 
 }
-.label{
+.label-agend{
     color: white;
-    margin-bottom: 5px;
+    
 }
 .input-agend{
     width: 100%;
@@ -34,6 +34,13 @@
     outline: none;
     margin-bottom: 10px;
     padding-left: 10px;
+    border: none;
+    border-bottom: solid 1px white;
+    background-color: transparent;
+    color: white;
+}
+.options{
+    color: black;
 }
 .logo-agend{
     width: 200px;
@@ -42,7 +49,7 @@
 #button-agend-form{
     width: 100%;
     cursor: pointer;
-    height: 40px;
+    height: 35px;
     background-color: rgba(100, 99, 99, 0.137);
     color: white;
     font-family: "Montserrat", sans-serif;
@@ -60,7 +67,7 @@ background-color: rgba(100, 99, 99, 0.425);
 .container-valor{
     display: flex;
     position: absolute;
-    top: 470px;
+    top: 430px;
     right: 0;
     justify-content: end;
     width: 100%;

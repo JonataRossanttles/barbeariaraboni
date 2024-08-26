@@ -22,9 +22,9 @@
   
 }
 .button-consulta{
-    width: 100%;
+    width: 250px;
     cursor: pointer;
-    height: 40px;
+    height: 30px;
     background-color: rgba(100, 99, 99, 0.137);
     color: white;
     font-family: "Montserrat", sans-serif;
@@ -34,10 +34,12 @@
     border: solid 1px white;
     transition: 0.5s;
     margin-top: 20px;
+    align-self: center;
 }
 .label{
     margin-right: 10px;
-    font-size: 20px;
+    font-size: 16px;
+    color: white;
     
     
 }
@@ -48,6 +50,13 @@
 .input-ticket{
     height: 30px;
     width: 100%;
+    background-color: transparent;
+    border: none;
+    border-bottom: solid 1px white;
+    
+    outline: none;
+    color: white;
+    border-radius: 5px;
 }
 .container-geral-consulta{
     width: 350px;
@@ -65,7 +74,7 @@
     background-color: rgba(100, 99, 99, 0.425);
     }
 .text-consulta{
-     font-size: 20px;
+     font-size: 16px;
      color: white;
     }
     .container-dados{
@@ -76,4 +85,12 @@
     background-color: white;
     width: 200px;
     margin: 10px 0 10px 0;
+}
+.titulo-consulta{
+    margin: 10px 0 0px 0;
+    color: white;
+}
+.container-geral-dados-consulta{
+    display: flex;
+    flex-direction: column;
 }
