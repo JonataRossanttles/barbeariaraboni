@@ -26,7 +26,7 @@ function logar(event){
     }else{
 
         fetch('https://backendbarbeariaraboni-1.onrender.com/login/auth',{method:'POST',
-            headers:{'Content-Type':'Application/json'},
+            headers:{'Content-Type':'application/json'},
         body:JSON.stringify(dados)
         }).then(response=>{
     
