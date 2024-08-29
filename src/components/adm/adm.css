@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Teko:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aclonica&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&display=swap');
+
+*{
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+.header-adm{
+    background-color: black;
+    height: 80px;
+    position: relative;
+}
+.usuario{
+    width: 40px;
+    height: 40px;
+    margin-bottom: 5px;
+}
+.logo-adm{
+    width: 60px;
+    height: 50px;
+}
+.container-usuario-logo{
+    cursor: pointer;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.select{
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    align-items: center;
+}
+.container-data-geral{
+    display: flex;
+    flex-direction: column;
+}
+.container-select-barbeiro{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin-bottom: 20px;
+}
+.container-data{
+    display: flex;
+    width: 300px;
+}
+.input-adm-data{
+    width: 100%;
+}
+.label-adm{
+    margin-bottom: 10px;
+}
+.tabela-adm{
+    margin-top: 30px;
+    min-width: 700px;
+   
+    
+}
+.titulo-table{
+    text-align: center;
+    margin-top: 50px;
+}
+td{
+ text-align: center;
+ width: 100px;
+ 
+}
+.container-geral-table{
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width:700px){
+
+td{
+    font-size: 12px;
+}
+.tabela-adm{
+    min-width: 370px;
+    padding: 0 5px;
+}
+
+}

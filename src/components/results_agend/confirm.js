@@ -1,7 +1,5 @@
 import './confirm.css'
-
 import React, { useEffect } from "react";
-import { Link } from 'react-router-dom';
 
 function Confirm({ticket, nome, data, hora}) {
 

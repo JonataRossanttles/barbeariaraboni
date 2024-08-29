@@ -21,8 +21,8 @@
     flex-direction: column;
   
 }
-.button-consulta{
-    width: 250px;
+.button-consulta,.button-delete{
+    width: 150px;
     cursor: pointer;
     height: 30px;
     background-color: rgba(100, 99, 99, 0.137);
@@ -33,9 +33,16 @@
     border-radius: 8px;
     border: solid 1px white;
     transition: 0.5s;
-    margin-top: 20px;
-    align-self: center;
+    
 }
+
+.container-button{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    width: 100%;
+}
+
 .label{
     margin-right: 10px;
     font-size: 16px;
@@ -69,7 +76,7 @@
     align-items: center;
     justify-content: center;
 }
-.button-consulta:hover{
+.button-consulta:hover,.button-delete:hover{
 
     background-color: rgba(100, 99, 99, 0.425);
     }

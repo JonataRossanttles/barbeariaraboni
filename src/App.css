@@ -404,6 +404,14 @@ footer{
     
   }
 }
+@media screen and (max-width:710px){
+  .menu-desktop{
+    display: none;
+  }
+  .icon-menu{
+    display: block;
+  }
+}
 @media screen and (max-width:950px){
   .link-intro{
     margin-right: 0;

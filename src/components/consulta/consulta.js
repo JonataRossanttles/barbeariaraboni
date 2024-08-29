@@ -17,34 +17,68 @@ function Consulta() {
     const [statusloading,Usestatusloading] = useState(false);
 
   
+function deletar(event){
+    event.preventDefault()
+    const ticket = ticketRef.current.value
+    const inform = {id:ticket,barbeiro:barbeiro}
+    if(ticket == "" || barbeiro == undefined){
+        console.log(barbeiro)
+            window.alert('Realize a consulta antes de cancelar seu agendamento!')
+    }else{
+        fetch('https://backendbarbeariaraboni-1.onrender.com/agendamento/delete',{method:'POST',headers:{'Content-type':'Application/json'},
+            body: JSON.stringify(inform)}).
+            then(response=>{if(!response.ok){
+                // Se a resposta não for OK (status 400 ou 500), lance um erro para o catch
+                return response.json().then(error => { throw new Error(error.messagem); });
+                
+            }else{
+                return response.json();
+            }
+        
+        }).then(dados=>window.alert(dados.mensagem))
+        .catch((erro)=>{window.alert(erro)})
+    }
+    
+
+   
+}
+
     function consultar(event){
         event.preventDefault()
         Usestatusloading(true)
-
+      
         const ticket = ticketRef.current.value
-        fetch(`https://backendbarbeariaraboni-1.onrender.com/agendamento/consulta`)
-    .then(response=>response.json())
-    .then(dados=>{
-        const chaves = Object.values(dados)
-        const obj = {...chaves[0],...chaves[1]}
-        if(ticket in obj){
-            Usenome(obj[ticket].nome)
-           Usecelular(obj[ticket].celular)
-            Usecorte(obj[ticket].corte)
-             Usebarbeiro(obj[ticket].barbeiro)
-             Usedata(obj[ticket].data)
-            Usehora(obj[ticket].hora)
-            Usedadosforms(true)
-            Usestatusloading(false)
-        }else{
-            Usestatusloading(false)
-            window.alert('Digite um ticket válido!')
-            
-        }
-    
-    }).catch((erro)=>{console.log(erro)})
+        const inf = {id:ticket}
 
+        if(ticket){
+        fetch(`https://backendbarbeariaraboni-1.onrender.com/agendamento/consulta`,{method:'POST',headers:{'Content-Type': 'Application/json'},
+            body:JSON.stringify(inf) })
+            .then(response=> {if (!response.ok) {
+                // Se a resposta não for OK (status 400 ou 500), lance um erro para o catch
+                return response.json().then(error => { throw new Error(error.message); });
+            }
+            return response.json();
+        })
+            .then(dados=>{
+                console.log(dados)
+                Usenome(dados.nome)
+                Usecelular(dados.celular)
+                Usecorte(dados.corte)
+                Usebarbeiro(dados.barbeiro)
+                Usedata(dados.data)
+                Usehora(dados.hora)
+                Usedadosforms(true)
+                Usestatusloading(false)
+            })
+            .catch((erro)=>{
+                Usestatusloading(false)
+                window.alert(erro.message)
+            })
 
+}else{
+    Usestatusloading(false)
+    window.alert('Preencha o campo de ticket!')
+}
 
     }
     return (
@@ -100,7 +134,10 @@ function Consulta() {
         <span className='text-consulta'>{hora}</span>
        </div>
        </div> 
-       <button className='button-consulta' onClick={consultar}>Consultar</button>
+       <div className='container-button'>
+       <button className='button-consulta'  onClick={consultar}>Consultar</button>
+       <button className='button-delete' onClick={deletar}>Excluir</button>
+       </div>
       </form>
       { statusloading && <Load/>}
     </div>

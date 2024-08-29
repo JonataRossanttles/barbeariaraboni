@@ -31,8 +31,6 @@ const [hora,Usehora] = useState();
 const [statusloading,Usestatusloading] = useState(false);
 
 
-
-
 const horariosem = ['09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30',
   '15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30']
 const horariodom = ['09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30']
@@ -94,12 +92,16 @@ fetch('https://backendbarbeariaraboni-1.onrender.com/agendamento/date', {
   headers: {
       'Content-Type': 'application/json' // Define o tipo de conteúdo como JSON
   }, body: JSON.stringify(date)  }) // Converte o corpo da requisição para uma string JSON
-  .then(response => response.json())
+  .then(response => {if (!response.ok) {
+    // Se a resposta não for OK (status 400 ou 500), lance um erro para o catch
+    return response.json().then(error => { throw new Error(error.message); });
+}
+return response.json()})
   .then(data => data.map((element)=>{ 
     Usehorariosbd((prev)=> [...prev, element.hora_formatada])})//Armazena os horários do banco em um array
 
   ).catch((error)=>{
-    console.log(error)
+    window.alert(error.message)
   })
 }
 useEffect(()=>{
@@ -124,13 +126,16 @@ useEffect(()=>{
 function enviar(event) {
   event.preventDefault(); // Impede o envio padrão do formulário
   Usestatusloading(true)
-  
+  const date = dataRef.current.value
+  const [ano, mes, dia] = date.split('-');
+      const dataFormatada = `${dia}/${mes}/${ano}`;
+
   const data = {
     nome: nomeRef.current.value,
     celular: celularRef.current.value,
     barbeiro: barbeiroRef.current.value,
     corte: corteRef.current.value,
-    data: dataRef.current.value,
+    data: dataFormatada,
     hora: horaRef.current.value,
     
   };
@@ -141,23 +146,24 @@ function enviar(event) {
     body: JSON.stringify(data)
   })
     .then(response => {
+      console.log(response)
       if(!response.ok){
-     return response.json().then(results=>{throw new Error(data.message)}) //Força ir para o catch caso de erro
+     return response.json().then(results=>{throw new Error(results.mensagem)}) // Se a resposta não for OK (status 400 ou 500), lance um erro para o catch
     }
     return response.json()
   })
     .then(data => {
         Useticket(data.id)
         Usenome(nomeRef.current.value)
-        Usedata(dataRef.current.value)
+        Usedata(dataFormatada)
         Usehora(horaRef.current.value)
         Usestatusenvio(true)
         Usestatusloading(false)
         adddata()
         
     })
-    .catch(error => {
-      window.alert('Preencha todos os campos!')
+    .catch(erro => {
+      window.alert(erro.message)
       Usestatusenvio(false)
       Usestatusloading(false)
       
@@ -165,7 +171,12 @@ function enviar(event) {
    
 }
 
-
+function limit(input) {
+  // Limita o input a 11 dígitos
+  if (input.value.length > 11) {
+      input.value = input.value.slice(0, 11);
+  }
+}
 
 return (
     <>
@@ -181,9 +192,9 @@ return (
       
       <form className='forms-agend' >
         <label className='label-agend' for='nome' >Nome:</label>
-        <input name='nome' className='input-agend'  id='nome' ref={nomeRef} required placeholder='Informe seu nome'></input>
+        <input name='nome' className='input-agend' maxlength="15"  id='nome' ref={nomeRef} required placeholder='Informe seu nome'></input>
         <label className='label-agend' for='celular' >Celular:</label>
-        <input name='celular' type="number" min="0"  className='input-agend' id='celular' ref={celularRef} required placeholder='Informe seu Whatsapp'></input>
+        <input name='celular' type="number" min="0"  max="99999999999" className='input-agend' id='celular' ref={celularRef} required placeholder='Informe seu Whatsapp' onInput={(e) => limit(e.target)}></input>
         <label className='label-agend' for='barbeiro'>Barbeiro:</label>
         <select className='input-agend' id='barbeiro' ref={barbeiroRef} onChange={adddata}   >
           <option disabled selected hidden>Selecione um barbeiro</option>
