@@ -83,7 +83,7 @@ function localizacaoscroolmob(){
       <li className='option-menu-mobile' onClick={cortesscroolmob}  >Cortes</li>
       <li className='option-menu-mobile' onClick={servicoscroolmob}  >Serviços</li>
       <li className='option-menu-mobile'onClick={localizacaoscroolmob}  >Localização</li>
-      <li className='option-menu-mobile'onClick={localizacaoscroolmob}  >Área Adm</li>
+    <Link to='/login' style={{textDecoration:'none'}}>   <li className='option-menu-mobile'onClick={localizacaoscroolmob}  >Área Adm</li></Link> 
     </ul>
 
      </header>
