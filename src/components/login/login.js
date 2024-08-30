@@ -18,7 +18,7 @@ function Login() {
 
 function logar(event){
     event.preventDefault()
-
+    Usestatusloading(true)
     const dados = {
         email:emailref.current.value,
         senha: senharef.current.value
