@@ -71,7 +71,7 @@ function localizacaoscroolmob(){
       <li className='option-menu' onClick={cortesscrool}  style={{color: alturaview > 1240  && alturaview < 2253 ? '#e8c871' :  'white'}}>Cortes</li>
       <li className='option-menu' onClick={servicoscrool} style={{color: alturaview > 2253  && alturaview < 3000 ? '#e8c871' :  'white'}} >Serviços</li>
       <li className='option-menu' onClick={localizacaoscrool} style={{color: alturaview >= 3139 ? '#e8c871' :  'white'}} >Localização</li>
-     <Link to='/login' style={{textDecoration:'none'}}><li className='option-menu' >Área adm</li></Link> 
+     <Link to='/login' style={{textDecoration:'none'}}><li className='option-menu' >Area adm</li></Link> 
     </ul>
 
 <img src={`${menumobile ?"/imagens/icon-close.svg" :"/imagens/icon-hamburger.svg" }`}  alt="" className="icon-menu" onClick={openclose}></img>
@@ -83,7 +83,7 @@ function localizacaoscroolmob(){
       <li className='option-menu-mobile' onClick={cortesscroolmob}  >Cortes</li>
       <li className='option-menu-mobile' onClick={servicoscroolmob}  >Serviços</li>
       <li className='option-menu-mobile'onClick={localizacaoscroolmob}  >Localização</li>
-    <Link to='/login' style={{textDecoration:'none'}}>   <li className='option-menu-mobile'onClick={localizacaoscroolmob}  >Área Adm</li></Link> 
+      <Link to='/login' style={{textDecoration:'none'}}> <li className='option-menu-mobile'onClick={localizacaoscroolmob}  >Area Adm</li></Link> 
     </ul>
 
      </header>

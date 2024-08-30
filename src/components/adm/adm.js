@@ -6,6 +6,8 @@ import React, {useState,useRef, useEffect } from "react";
 function Adm() {
  
   const url = useLocation()
+  const [nome,Usestate] = useState()
+  const [optionuser,Useoptionuser] = useState(false)
    const [agendamentos,Useagendamentos] = useState();
   const barbeiroRef = useRef()
   const dataRef = useRef()
@@ -19,15 +21,18 @@ function Adm() {
   useEffect(()=>{
     const barbeironame =  barbeiros.map((element)=> <option className='options'>{element}</option>)
     Usebarbeiro(barbeironame)
-    if(url.state.nome==null){
+    if(!url.state || !url.state.nome){
       navigate('/login')
+    }else{
+      Usestate(url.state.nome)
     }
   },[])
 
 // Verificar se o token está valido. 
 function verificy(){
  const  token = localStorage.getItem('tokenid')
- fetch('https://backendbarbeariaraboni-1.onrender.com/login/consulta',{method:'POST',headers:{'Content-Type': 'Application/json','authorization':token}}).
+ fetch('https://backendbarbeariaraboni-1.onrender.com/login/consulta',{method:'POST',
+  headers:{'Content-Type': 'Application/json','authorization':token}}).
  then(response=>{if(!response.ok){
       return response.json().then(erro=> {throw new Error(erro.message)} 
       )
@@ -42,11 +47,13 @@ useEffect(()=>{
   const today = new Date();
   const dataatual = today.toISOString().split('T')[0] 
   setTimeout(() => {
-    dataRef.current.value = dataatual
+    if (dataRef.current) {
+      dataRef.current.value = dataatual;
+    }
   }, 0);
   verificy()
 },[])
-
+//Traz os dados para a tabela
 function dados(){
   Usesatatuslib(true)
   const information = {barbeiro: barbeiroRef.current.value,data: dataRef.current.value }
@@ -67,7 +74,6 @@ function dados(){
                 <td>{element.nome}</td>
                 <td>{element.celular}</td>
                 <td>{element.corte}</td>
-                <td>{element.data}</td>
                 <td>{element.hora}</td>
             </tr>)
     Useagendamentos(agendamentos)
@@ -82,15 +88,25 @@ function dados(){
 
 }
 
+function option(){
+  Useoptionuser(!optionuser)
+}
+function logoff(){
+  localStorage.clear()
+  navigate('/login')
+}
 
     return (
         <>
         <div>
    <header className='header-adm'>
    <img src='/imagens/logo-sem-fundo.png' alt='logo' className='logo-adm' ></img>
-   <div className='container-usuario-logo'>
+   <div className='container-usuario-logo' onClick={option}>
    <img src='/imagens/usuario.png' alt='usuario' className='usuario' ></img>
-      <span style={{color:'white'}}>{url.state.nome}</span>
+      <span style={{color:'white'}}>{nome}</span>
+   </div>
+   <div className='container-option-user' style={{display: optionuser? 'flex': 'none'}} onClick={logoff}>
+    <span className='option-user' >Sair</span>
    </div>
    </header>
    <section>
@@ -118,7 +134,6 @@ function dados(){
         <th>Nome</th>
         <th>Celular</th>
         <th>Corte</th>
-        <th>Data</th>
         <th>Hora</th>
         </tr>
         </thead>

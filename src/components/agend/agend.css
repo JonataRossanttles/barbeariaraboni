@@ -99,6 +99,7 @@ option{
 .text-voltar{
     color: white;
 }
+
 @media screen and (max-width:526px){
     .container-voltar{
         left: 18px;

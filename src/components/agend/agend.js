@@ -3,15 +3,14 @@ import './agend.css'
 import React, { useEffect, useState,useRef } from "react";
 import Confirm from '../results_agend/confirm';
 import Load from '../load/load';
-
-
+import Caixaerro from '../caixaerro/caixaerro';
 
 function Agend() {
 
 const [options,Useoptions] = useState([])
 const [dataatual,Usedataatual] = useState([])
-const [statuserro,Usestatuserro] = useState()
-const navigate = useNavigate()
+const [mensagemerro,Usemensagemerro] = useState()
+const [statuserro,Usestatuserro] = useState(false)
 const [statusenvio,Usestatusenvio] = useState(false)
 const [status,Usestatus] = useState(false)
 const [horarios,Usehorarios] = useState([])
@@ -82,16 +81,20 @@ Usestatus(true)
 // transformando a string em um objeto
 const dataescolhida = new Date (dataRef.current.value)
 const dataformat = dataescolhida.toISOString().split('T')[0] 
+const date = dataformat
+const [ano, mes, dia] = date.split('-');
+  const dataFormatada = `${dia}/${mes}/${ano}`;
+  console.log(dataFormatada)
 const namebarbeiro = barbeiroRef.current.value
-const date = {data: dataformat, barbeiro: namebarbeiro}
+const datefinal = {data: dataFormatada, barbeiro: namebarbeiro}
 Usehorariosbd([]) // Limpa os horários que vieram do banco
-Usedataatual(dataformat);
+Usedataatual(dataFormatada);
 
 fetch('https://backendbarbeariaraboni-1.onrender.com/agendamento/date', {
   method: 'POST', // Define o método HTTP
   headers: {
       'Content-Type': 'application/json' // Define o tipo de conteúdo como JSON
-  }, body: JSON.stringify(date)  }) // Converte o corpo da requisição para uma string JSON
+  }, body: JSON.stringify(datefinal)  }) // Converte o corpo da requisição para uma string JSON
   .then(response => {if (!response.ok) {
     // Se a resposta não for OK (status 400 ou 500), lance um erro para o catch
     return response.json().then(error => { throw new Error(error.message); });
@@ -101,7 +104,8 @@ return response.json()})
     Usehorariosbd((prev)=> [...prev, element.hora_formatada])})//Armazena os horários do banco em um array
 
   ).catch((error)=>{
-    window.alert(error.message)
+    Usemensagemerro(error.message)
+    Usestatuserro(true)
   })
 }
 useEffect(()=>{
@@ -163,7 +167,8 @@ function enviar(event) {
         
     })
     .catch(erro => {
-      window.alert(erro.message)
+      Usemensagemerro(erro.message)
+      Usestatuserro(true)
       Usestatusenvio(false)
       Usestatusloading(false)
       
@@ -176,6 +181,9 @@ function limit(input) {
   if (input.value.length > 11) {
       input.value = input.value.slice(0, 11);
   }
+}
+function closeerro(){
+  Usestatuserro(false)
 }
 
 return (
@@ -192,7 +200,7 @@ return (
       
       <form className='forms-agend' >
         <label className='label-agend' for='nome' >Nome:</label>
-        <input name='nome' className='input-agend' maxlength="15"  id='nome' ref={nomeRef} required placeholder='Informe seu nome'></input>
+        <input name='nome' className='input-agend' maxlength="20"  id='nome' ref={nomeRef} required placeholder='Informe seu nome'></input>
         <label className='label-agend' for='celular' >Celular:</label>
         <input name='celular' type="number" min="0"  max="99999999999" className='input-agend' id='celular' ref={celularRef} required placeholder='Informe seu Whatsapp' onInput={(e) => limit(e.target)}></input>
         <label className='label-agend' for='barbeiro'>Barbeiro:</label>
@@ -218,6 +226,7 @@ return (
       </form>
       
     </div>
+    { statuserro && <Caixaerro statuserro={statuserro} mensagemerro={mensagemerro} closeerro={closeerro}/>}
     { statusloading && <Load/>}
     { statusenvio && <Confirm ticket={ticket} nome={nome} data={data} hora={hora} />}
     </>

@@ -1,16 +1,19 @@
 import { Link,useNavigate } from 'react-router-dom';
 import './login.css'
 import React, {useState,useRef, useEffect } from "react";
-import Adm from '../adm/adm';
+import Caixaerro from '../caixaerro/caixaerro';
+import Load from '../load/load';
 
 function Login() {
     const navigate = useNavigate()
+    const [mensagemerro,Usemensagemerro] = useState()
+    const [statuserro,Usestatuserro] = useState(false)
    const [nomeusuario,Usenomeusuario] = useState()
     const emailref = useRef()
     const senharef = useRef()
     const [statuslog,Usestatuslog] = useState(false)
+    const [statusloading,Usestatusloading] = useState(false);
    
-
     document.body.style.backgroundColor = 'black'
 
 function logar(event){
@@ -22,11 +25,12 @@ function logar(event){
     }
    
     if(emailref.current.value == '' || senharef.current.value == '' ){
-        window.alert('Preencha todos os campos!')
+        Usemensagemerro('Preencha todos os campos!')
+        Usestatuserro(true)
     }else{
 
-        fetch('https://backendbarbeariaraboni-1.onrender.com/login/auth',{method:'POST',
-            headers:{'Content-Type':'application/json'},
+        fetch('/login/auth',{method:'POST',
+            headers:{'Content-Type':'Application/json'},
         body:JSON.stringify(dados)
         }).then(response=>{
     
@@ -41,13 +45,17 @@ function logar(event){
        
     }).then(dados=>{
         Usenomeusuario(dados.nome)
+        localStorage.setItem('nome',dados.nome)
         Usestatuslog(true)
-        
+        Usestatuserro(false)
+        Usestatusloading(false)
     })
-    
     .catch((erro)=>{
         Usestatuslog(false)
-        window.alert(erro.message)
+        Usestatuserro(true)
+        Usestatusloading(false)
+        Usemensagemerro(erro.message)
+        
     })
 
     }
@@ -60,6 +68,31 @@ useEffect(()=>{
     
    },[statuslog])
 
+   function closeerro(){
+    Usestatuserro(false)
+  }
+// Verificar se o token está valido. 
+function verificy(){
+    const  token = localStorage.getItem('tokenid')
+    fetch('https://backendbarbeariaraboni-1.onrender.com/login/consulta',{method:'POST',
+     headers:{'Content-Type': 'Application/json','authorization':token}}).
+    then(response=>{if(!response.ok){
+        return response.json().then(erro=> {throw new Error(erro.message)} 
+         )
+    }else{
+        const name = localStorage.getItem('nome')
+        navigate('/login/adm',{state:{nome:name}})
+    }
+   
+   }).catch((erro)=>{
+     navigate('/login/')
+   })
+     
+   }
+// Ativa a verificação do token.
+   useEffect(()=>{
+    verificy()
+},[])
     return (
         <>
 
@@ -82,9 +115,10 @@ useEffect(()=>{
          <button id='button-agend-form' onClick={logar}>Logar</button>
          </form>
          </div>
+         { statuserro && <Caixaerro statuserro={statuserro} mensagemerro={mensagemerro} closeerro={closeerro}/>}
          </div>
            
-            
+         { statusloading && <Load/>}
 
         </>
     

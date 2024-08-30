@@ -2,11 +2,16 @@ import { Link } from 'react-router-dom';
 import './consulta.css'
 import React, {useState } from "react";
 import Load from '../load/load';
+import Caixaerro from '../caixaerro/caixaerro';
+import Caixaconfirm from '../caixaconfirm/caixaconfirm';
 
 function Consulta() {
     document.body.style.backgroundColor = 'black'
 
     const ticketRef = useState();
+    const [mensagemerro,Usemensagemerro] = useState()
+    const [statuserro,Usestatuserro] = useState(false)
+    const [caixaconfirm,Usecaixaconfirm] = useState(false)
     const [nome,Usenome] = useState();
     const [celular,Usecelular] = useState();
     const [corte,Usecorte] = useState();
@@ -19,11 +24,12 @@ function Consulta() {
   
 function deletar(event){
     event.preventDefault()
+    Usecaixaconfirm(false)
     const ticket = ticketRef.current.value
     const inform = {id:ticket,barbeiro:barbeiro}
     if(ticket == "" || barbeiro == undefined){
-        console.log(barbeiro)
-            window.alert('Realize a consulta antes de cancelar seu agendamento!')
+        Usemensagemerro('Realize a consulta antes de cancelar seu agendamento!')
+        Usestatuserro(true)
     }else{
         fetch('https://backendbarbeariaraboni-1.onrender.com/agendamento/delete',{method:'POST',headers:{'Content-type':'Application/json'},
             body: JSON.stringify(inform)}).
@@ -35,8 +41,20 @@ function deletar(event){
                 return response.json();
             }
         
-        }).then(dados=>window.alert(dados.mensagem))
-        .catch((erro)=>{window.alert(erro)})
+        }).then(dados=>{
+            Usedadosforms(false)
+            Usestatuserro(false)
+            ticketRef.current.value = ''
+            window.alert('Agendamento cancelado com sucesso!')
+            
+        })
+        .catch((erro)=>{
+            
+            Usemensagemerro(erro.message)
+            Usestatuserro(true)
+            
+            
+        })
     }
     
 
@@ -60,7 +78,6 @@ function deletar(event){
             return response.json();
         })
             .then(dados=>{
-                console.log(dados)
                 Usenome(dados.nome)
                 Usecelular(dados.celular)
                 Usecorte(dados.corte)
@@ -69,18 +86,37 @@ function deletar(event){
                 Usehora(dados.hora)
                 Usedadosforms(true)
                 Usestatusloading(false)
+                Usestatuserro(false)
             })
             .catch((erro)=>{
                 Usestatusloading(false)
-                window.alert(erro.message)
+                Usemensagemerro(erro.message)
+                Usestatuserro(true)
             })
 
 }else{
     Usestatusloading(false)
-    window.alert('Preencha o campo de ticket!')
+    Usemensagemerro('Preencha todos os campos!')
+    Usestatuserro(true)
 }
 
     }
+
+function closeerro(){
+  
+ Usestatuserro(false)
+       
+      }
+
+function verification(event){
+    event.preventDefault()
+    Usecaixaconfirm(true)
+}
+
+function fechar(){
+    Usecaixaconfirm(false)
+}
+
     return (
         <>
          
@@ -101,7 +137,6 @@ function deletar(event){
             <input name='nome' className='input-ticket'  id='ticket' ref={ticketRef} placeholder='Digite seu ticket'></input>
             </div>
        
-        
         </div>
         <div className='container-geral-dados-consulta' style={{display: dadosforms ? 'flex' : 'none' }}>
 
@@ -136,11 +171,15 @@ function deletar(event){
        </div> 
        <div className='container-button'>
        <button className='button-consulta'  onClick={consultar}>Consultar</button>
-       <button className='button-delete' onClick={deletar}>Excluir</button>
+       <button className='button-delete' onClick={verification}>Excluir</button>
        </div>
       </form>
       { statusloading && <Load/>}
+      { statuserro && <Caixaerro statuserro={statuserro} mensagemerro={mensagemerro} closeerro={closeerro}/>}
+     
     </div>
+      {caixaconfirm && <Caixaconfirm deletar={deletar} caixaconfirm={caixaconfirm} fechar={fechar} ></Caixaconfirm> } 
+   
         </>
     
       );
