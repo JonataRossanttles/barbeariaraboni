@@ -84,7 +84,6 @@ const dataformat = dataescolhida.toISOString().split('T')[0]
 const date = dataformat
 const [ano, mes, dia] = date.split('-');
   const dataFormatada = `${dia}/${mes}/${ano}`;
-  console.log(dataFormatada)
 const namebarbeiro = barbeiroRef.current.value
 const datefinal = {data: dataFormatada, barbeiro: namebarbeiro}
 Usehorariosbd([]) // Limpa os horários que vieram do banco

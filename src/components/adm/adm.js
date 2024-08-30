@@ -56,7 +56,11 @@ useEffect(()=>{
 //Traz os dados para a tabela
 function dados(){
   Usesatatuslib(true)
-  const information = {barbeiro: barbeiroRef.current.value,data: dataRef.current.value }
+  const date = dataRef.current.value 
+  const [ano, mes, dia] = date.split('-');
+  const dataFormatada = `${dia}/${mes}/${ano}`;
+  const information = {barbeiro: barbeiroRef.current.value,data: dataFormatada }
+  console.log(dataRef.current.value)
   fetch('https://backendbarbeariaraboni-1.onrender.com/adm', {
     method: 'POST', // Define o método HTTP
     headers: {
