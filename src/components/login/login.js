@@ -29,7 +29,7 @@ function logar(event){
         Usestatuserro(true)
     }else{
 
-        fetch('/login/auth',{method:'POST',
+        fetch('https://backendbarbeariaraboni-1.onrender.com/login/auth',{method:'POST',
             headers:{'Content-Type':'Application/json'},
         body:JSON.stringify(dados)
         }).then(response=>{
