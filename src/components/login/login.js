@@ -27,7 +27,7 @@ function logar(event){
     if(emailref.current.value === '' || senharef.current.value === '' ){
         Usemensagemerro('Preencha todos os campos!')
         Usestatusloading(false)
-        Usestatuserro(false)
+        Usestatuserro(true)
     }else{
 
         fetch('https://backendbarbeariaraboni-1.onrender.com/login/auth',{method:'POST',
