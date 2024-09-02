@@ -1,7 +1,4 @@
-import { Link,useNavigate,useLocation } from 'react-router-dom';
 import './caixaerro.css'
-import React, {useState,useRef, useEffect } from "react";
-
 
 function Caixaerro({mensagemerro,statuserro,closeerro}) {
     

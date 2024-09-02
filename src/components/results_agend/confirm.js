@@ -1,8 +1,6 @@
 import './confirm.css'
-import React, { useEffect } from "react";
 
 function Confirm({ticket, nome, data, hora}) {
-
 
 return (
     <>

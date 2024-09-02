@@ -24,10 +24,9 @@ function logar(event){
         senha: senharef.current.value
     }
    
-    if(emailref.current.value == '' || senharef.current.value == '' ){
+    if(emailref.current.value === '' || senharef.current.value === '' ){
         Usemensagemerro('Preencha todos os campos!')
-        Usestatuserro(true)
-        Usestatusloading(false)
+        Usestatuserro(false)
     }else{
 
         fetch('https://backendbarbeariaraboni-1.onrender.com/login/auth',{method:'POST',

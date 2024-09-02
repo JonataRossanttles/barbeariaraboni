@@ -1,7 +1,4 @@
-import { Link,useNavigate,useLocation } from 'react-router-dom';
 import './caixaconfirm.css'
-import React, {useState,useRef, useEffect } from "react";
-
 
 function Caixaconfirm({deletar,caixaconfirm,fechar}) {
  

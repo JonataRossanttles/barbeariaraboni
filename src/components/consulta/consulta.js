@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import './consulta.css'
-import React, {useState } from "react";
+import React, {useRef, useState } from "react";
 import Load from '../load/load';
 import Caixaerro from '../caixaerro/caixaerro';
 import Caixaconfirm from '../caixaconfirm/caixaconfirm';
@@ -8,7 +8,7 @@ import Caixaconfirm from '../caixaconfirm/caixaconfirm';
 function Consulta() {
     document.body.style.backgroundColor = 'black'
 
-    const ticketRef = useState();
+    const ticketRef = useRef();
     const [mensagemerro,Usemensagemerro] = useState()
     const [statuserro,Usestatuserro] = useState(false)
     const [caixaconfirm,Usecaixaconfirm] = useState(false)
@@ -27,7 +27,7 @@ function deletar(event){
     Usecaixaconfirm(false)
     const ticket = ticketRef.current.value
     const inform = {id:ticket,barbeiro:barbeiro}
-    if(ticket == "" || barbeiro == undefined){
+    if(ticket === "" || barbeiro === undefined){
         Usemensagemerro('Realize a consulta antes de cancelar seu agendamento!')
         Usestatuserro(true)
     }else{
@@ -38,22 +38,16 @@ function deletar(event){
                 return response.json().then(error => { throw new Error(error.messagem); });
                 
             }else{
-                return response.json();
+                Usedadosforms(false)
+                 Usestatuserro(false)
+                ticketRef.current.value = ''
+                window.alert('Agendamento cancelado com sucesso!')
             }
         
-        }).then(dados=>{
-            Usedadosforms(false)
-            Usestatuserro(false)
-            ticketRef.current.value = ''
-            window.alert('Agendamento cancelado com sucesso!')
-            
         })
         .catch((erro)=>{
-            
             Usemensagemerro(erro.message)
             Usestatuserro(true)
-            
-            
         })
     }
     
@@ -61,7 +55,7 @@ function deletar(event){
    
 }
 
-    function consultar(event){
+function consultar(event){
         event.preventDefault()
         Usestatusloading(true)
       
