@@ -26,6 +26,7 @@ function logar(event){
    
     if(emailref.current.value === '' || senharef.current.value === '' ){
         Usemensagemerro('Preencha todos os campos!')
+        Usestatusloading(false)
         Usestatuserro(false)
     }else{
 
