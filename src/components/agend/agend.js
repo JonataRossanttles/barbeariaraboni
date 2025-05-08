@@ -143,7 +143,7 @@ function enviar(event) {
     
   };
 
-  fetch('https://backendbarbeariaraboni-1.onrender.com/agendamento', {
+  fetch('https://backendbarbeariaraboni.onrender.com/agendamento', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
