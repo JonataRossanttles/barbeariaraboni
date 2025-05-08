@@ -89,7 +89,7 @@ const datefinal = {data: dataFormatada, barbeiro: namebarbeiro}
 Usehorariosbd([]) // Limpa os horários que vieram do banco
 Usedataatual(dataFormatada);
 
-fetch('https://backendbarbeariaraboni-1.onrender.com/agendamento/date', {
+fetch('https://backendbarbeariaraboni.onrender.com/agendamento/date', {
   method: 'POST', // Define o método HTTP
   headers: {
       'Content-Type': 'application/json' // Define o tipo de conteúdo como JSON
