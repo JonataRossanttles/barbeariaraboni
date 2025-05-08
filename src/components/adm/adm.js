@@ -61,7 +61,7 @@ function dados(){
   const dataFormatada = `${dia}/${mes}/${ano}`;
   const information = {barbeiro: barbeiroRef.current.value,data: dataFormatada }
   console.log(dataRef.current.value)
-  fetch('https://backendbarbeariaraboni-1.onrender.com/adm', {
+  fetch('https://backendbarbeariaraboni.onrender.com/adm', {
     method: 'POST', // Define o método HTTP
     headers: {
         'Content-Type': 'application/json',
