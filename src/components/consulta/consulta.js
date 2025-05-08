@@ -31,7 +31,7 @@ function deletar(event){
         Usemensagemerro('Realize a consulta antes de cancelar seu agendamento!')
         Usestatuserro(true)
     }else{
-        fetch('https://backendbarbeariaraboni-1.onrender.com/agendamento/delete',{method:'POST',headers:{'Content-type':'Application/json'},
+        fetch('https://backendbarbeariaraboni.onrender.com/agendamento/delete',{method:'POST',headers:{'Content-type':'Application/json'},
             body: JSON.stringify(inform)}).
             then(response=>{if(!response.ok){
                 // Se a resposta não for OK (status 400 ou 500), lance um erro para o catch
@@ -63,7 +63,7 @@ function consultar(event){
         const inf = {id:ticket}
 
         if(ticket){
-        fetch(`https://backendbarbeariaraboni-1.onrender.com/agendamento/consulta`,{method:'POST',headers:{'Content-Type': 'Application/json'},
+        fetch(`https://backendbarbeariaraboni.onrender.com/agendamento/consulta`,{method:'POST',headers:{'Content-Type': 'Application/json'},
             body:JSON.stringify(inf) })
             .then(response=> {if (!response.ok) {
                 // Se a resposta não for OK (status 400 ou 500), lance um erro para o catch
