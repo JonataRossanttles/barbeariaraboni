@@ -75,7 +75,7 @@ useEffect(()=>{
 // Verificar se o token está valido. 
 function verificy(){
     const  token = localStorage.getItem('tokenid')
-    fetch('https://backendbarbeariaraboni-1.onrender.com/login/consulta',{method:'POST',
+    fetch('https://backendbarbeariaraboni.onrender.com/login/consulta',{method:'POST',
      headers:{'Content-Type': 'Application/json','authorization':token}}).
     then(response=>{if(!response.ok){
         return response.json().then(erro=> {throw new Error(erro.message)} 
